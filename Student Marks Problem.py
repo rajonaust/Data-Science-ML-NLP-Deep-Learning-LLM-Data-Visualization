@@ -564,4 +564,38 @@ print('\nCourse Information\n------------------\n')
 for course in range(len(course_name)):
     print(f'{course_name[course]}: {course_score[course]/len(student_name)} == {top_three_student(course_name[course])}\n')
 
+def find_max(sc, cm, ar):
+    ans = 1
+    mx = sc
+    if cm > mx:
+        ans = 2
+        mx = cm
+    if ar > mx:
+        ans = 3
+        mx = ar
+    return ans
+    
+science= []
+commerce = []
+arts = []
 
+for student, marks in student_list.items():
+    _list = list(marks.values())
+    sc = (_list[0] + _list[1] + _list[2] + _list[3])/4
+    cm = (_list[4] + _list[5] + _list[6])/3
+    ar = (_list[7] + _list[8] + _list[9])/3
+    if find_max(sc, cm, ar) == 1:
+        science.append(student)
+    elif find_max(sc, cm, ar) == 2:
+        commerce.append(student)
+    else:
+        arts.append(student)
+print('Science\n--------')
+for student in science:
+    print(student)
+print('Commerce\n--------')
+for student in commerce:
+    print(student)
+print('Arts\n-----')
+for student in arts:
+    print(student)
